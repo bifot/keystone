@@ -262,11 +262,11 @@ class KnexAdapter extends BaseKeystoneAdapter {
 }
 
 class KnexListAdapter extends BaseListAdapter {
-  constructor(key, parentAdapter) {
+  constructor(key, parentAdapter, config) {
     super(...arguments);
     this.getListAdapterByKey = parentAdapter.getListAdapterByKey.bind(parentAdapter);
     this.realKeys = [];
-    this.tableName = this.key;
+    this.tableName = config && config.tableName ? config.tableName : this.key;
     this.rels = undefined;
   }
 
